@@ -24,7 +24,35 @@ public class Algoritmo
 
     public void BubbleSort(int[] arr)
     {
-        // TODO: Implementar el algoritmo de Bubble Sort tradicional
+        if (arr == null || arr.Length <= 1) return;
 
+        // Obtener la longitud del arreglo
+        int n = arr.Length;
+
+        // Bucle externo: controla cuántas pasadas hacemos por el arreglo
+        for (int i = 0; i < n - 1; i++)
+        {
+            // Indicador para detectar si ya está ordenado y poder salir temprano
+            bool swapped = false;
+
+            // Bucle interno: compara elementos adyacentes
+            // El "- i" es una optimización, ya que los últimos 'i' elementos ya están ordenados
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                // Si el elemento actual es mayor al siguiente, se intercambian
+                if (arr[j] > arr[j + 1])
+                {
+                    // Intercambio (Swap) usando una variable temporal
+                    int temporal = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temporal;
+                    swapped = true;
+                }
+            }
+
+            // Si en una pasada no hubo intercambios, ya está ordenado
+            if (!swapped) break;
+        }
     }
 }
+
